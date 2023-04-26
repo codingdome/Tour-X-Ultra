@@ -50,7 +50,7 @@ public class TourListView implements Initializable {
             if (event.getClickCount() == 2) {
                 Tour selectedTour = (Tour) tableView.getSelectionModel().getSelectedItem();
                 if (selectedTour != null) {
-                    System.out.println(selectedTour.getName() + " " + selectedTour.getDescription() + " " + selectedTour.getOrigin() + " " + selectedTour.getTo());
+                    System.out.println(selectedTour.getName() + " " + selectedTour.getDescription() + " " + selectedTour.getOrigin() + " " + selectedTour.getTo() + " " + selectedTour.getInformation());
                 }
             }
         });
