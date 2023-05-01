@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<?import javafx.scene.image.Image?>
+
+<?import java.net.URL?>
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="at.fhtw.swen2.tourxultra.presentation.view.TourViews.TourDetailView"
+>
+    <stylesheets>
+        <URL value="@button.css"/>
+    </stylesheets>
+
+    <children>
+        <AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <VBox spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tour Name">
+                            <font>
+                                <Font name="Arial Bold" size="13.0"/>
+                            </font>
+                        </Text>
+                        <Text style="-fx-text-fill: #390099;" fx:id="t_name" strokeType="OUTSIDE" strokeWidth="0.0" text="Eine coole Tour">
+                            <font>
+                                <Font name="Arial Bold" size="24.0"/>
+                            </font>
+                        </Text>
+                        <TextField fx:id="tf_name" disable="true"/>
+                        <Separator prefWidth="200.0"/>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+                            <font>
+                                <Font name="Arial Bold" size="13.0"/>
+                            </font>
+                        </Text>
+                        <Text fx:id="t_description" strokeType="OUTSIDE" strokeWidth="0.0" text="Das ist eine Beschreibung von der Tour"/>
+                        <TextField fx:id="tf_description" disable="true"/>
+                        <Separator prefWidth="200.0"/>
+                        <HBox spacing="10.0">
+                            <children>
+                                <VBox>
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Departure">
+                                            <font>
+                                                <Font name="Arial Bold" size="13.0"/>
+                                            </font>
+                                        </Text>
+                                        <Text fx:id="t_departure" strokeType="OUTSIDE" strokeWidth="0.0" text="München"/>
+                                        <TextField fx:id="tf_departure" disable="true"/>
+                                    </children>
+                                </VBox>
+                                <VBox>
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Arrival">
+                                            <font>
+                                                <Font name="Arial Bold" size="13.0"/>
+                                            </font>
+                                        </Text>
+                                        <Text fx:id="t_arrival" strokeType="OUTSIDE" strokeWidth="0.0" text="Stuttgart"/>
+                                        <TextField fx:id="tf_arrival" disable="true"/>
+                                    </children>
+                                </VBox>
+                                <VBox>
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Transport">
+                                            <font>
+                                                <Font name="Arial Bold" size="13.0"/>
+                                            </font>
+                                        </Text>
+                                        <Text fx:id="t_transport" strokeType="OUTSIDE" strokeWidth="0.0" text="Bike"/>
+                                        <TextField fx:id="tf_transport" disable="true"/>
+                                    </children>
+                                </VBox>
+                                <VBox>
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Distance (in m)">
+                                            <font>
+                                                <Font name="Arial Bold" size="13.0"/>
+                                            </font>
+                                        </Text>
+                                        <Text fx:id="t_distance" strokeType="OUTSIDE" strokeWidth="0.0"/>
+                                        <TextField fx:id="tf_distance" disable="true"/>
+                                    </children>
+                                </VBox>
+                                <VBox>
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Duration ( in min)">
+                                            <font>
+                                                <Font name="Arial Bold" size="13.0"/>
+                                            </font>
+                                        </Text>
+                                        <Text fx:id="t_duration" strokeType="OUTSIDE" strokeWidth="0.0"/>
+                                        <TextField fx:id="tf_duration" disable="true"/>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                        <Separator prefWidth="200.0"/>
+                        <HBox spacing="10.0">
+                            <children>
+                                <VBox>
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Popularity">
+                                            <font>
+                                                <Font name="Arial Bold" size="13.0"/>
+                                            </font>
+                                        </Text>
+                                        <Text fx:id="t_popularity" strokeType="OUTSIDE" strokeWidth="0.0" text="4"/>
+                                    </children>
+                                </VBox>
+                                <VBox>
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Child-friendliness (1-10)">
+                                            <font>
+                                                <Font name="Arial Bold" size="13.0"/>
+                                            </font>
+                                        </Text>
+                                        <Text fx:id="t_childFriendliness" strokeType="OUTSIDE" strokeWidth="0.0" text="5"/>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                        <Text style="-fx-font-style: italic" text="This values might be outdated if you deleted logs. It will be up to date after adding a new log."/>
+                        <Separator prefWidth="200.0"/>
+                        <ImageView fitHeight="200.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="https://www.mapquestapi.com/staticmap/v5/map?key=WwtPSYRcTQ3d3iNg7PSjfvQmezzV1pQe&amp;center=Boston,MA&amp;size=900,200@2x"/>
+                        </ImageView>
+                        <Separator prefWidth="200.0"/>
+                        <HBox spacing="5.0">
+                            <children>
+
+
+                                <Button
+                                        style="-fx-padding: 8px 16px;
+                                       -fx-text-fill: white;
+                                       -fx-font-weight: bold;
+                                       -fx-background-color: #390099;
+                                       -fx-cursor: hand;"
+                                        onAction="#editTourButtonAction"
+                                        mnemonicParsing="false"
+                                        text="Edit Tour"/>
+
+
+                                <Button style="-fx-padding: 8px 16px;
+                                -fx-text-fill: white;
+                                -fx-font-weight: bold;
+                                -fx-background-color: #390099;
+                                -fx-cursor: hand;" onAction="#saveChangesButtonAction" mnemonicParsing="false" text="Save Changes"/>
+
+
+                                <Button style="-fx-padding: 8px 16px;
+                                -fx-text-fill: white;
+                                   -fx-font-weight: bold;
+                                    -fx-background-color: #9e0059;
+                                   -fx-cursor: hand;" onAction="#exportTourButtonAction" mnemonicParsing="false" text="Export Tour"/>
+
+
+                                <Button style="-fx-padding: 8px 16px;
+                               -fx-text-fill: white;
+                               -fx-font-weight: bold;
+                               -fx-background-color: #9e0059;
+                               -fx-cursor: hand;"
+                                        onAction="#importTourButtonAction" mnemonicParsing="false" text="Import Tour"/>
+
+
+                                <Button
+                                        style="-fx-padding: 8px 16px;
+                                -fx-text-fill: white;
+                                -fx-font-weight: bold;
+                                -fx-background-color: #ff5400;
+                                -fx-cursor: hand;"
+                                        onAction="#deleteTourButtonAction"
+                                        mnemonicParsing="false"
+                                        text="Delete Tour"/>
+
+
+                                <Button style="-fx-padding: 8px 16px;
+                                   -fx-text-fill: white;
+                                   -fx-font-weight: bold;
+                                   -fx-background-color: #0466c8;
+                                   -fx-cursor: hand;" onAction="#showTourLogsButtonAction" mnemonicParsing="false" text="Show &amp; Add Tourlogs"/>
+                            </children>
+
+
+                        </HBox>
+                        <Text fx:id="t_feedback" style="-fx-text-fill: #ff0000 !important; -fx-font-size: 11px; -fx-wrap-text: true;"/>
+                    </children>
+                </VBox>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
