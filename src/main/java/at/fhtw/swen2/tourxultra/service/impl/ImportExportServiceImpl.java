@@ -23,7 +23,7 @@ public class ImportExportServiceImpl implements ImportExportService {
             } catch (JsonProcessingException e) {
                 e.printStackTrace();
             }
-            try (FileWriter writer = new FileWriter(tour.getId() + ".json")) {
+            try (FileWriter writer = new FileWriter(tour.getName().replace(" ", "").toLowerCase() + ".json")) {
                 writer.write(json);
             } catch (IOException e) {
                 e.printStackTrace();

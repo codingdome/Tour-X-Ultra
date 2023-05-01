@@ -36,7 +36,6 @@ public class TourServiceImpl implements TourService {
         if (tour == null) {
             return null;
         }
-        tour.setPopularity(Math.toIntExact(logService.countLogsForTour(tour)));
         TourEntity tourEntity = tourRepository.save(tourMapper.toEntity(tour));
         System.out.println(tourRepository.findAll());
         return tourMapper.fromEntity(tourEntity);
@@ -72,6 +71,7 @@ public class TourServiceImpl implements TourService {
         //get tour from file
         Tour importTour = fileToTour(file);
         //check if tour exists (for list view)
+//        tourRepository.save(tourMapper.toEntity(importTour));
         if (tourRepository.findById(importTour.getId()).isPresent()) {
             //it already exists:
             TourEntity tourEntity = tourRepository.save(tourMapper.toEntity(importTour));
