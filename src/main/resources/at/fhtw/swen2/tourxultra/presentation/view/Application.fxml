@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
+<BorderPane fx:id="layout" prefHeight="800.0"
+            prefWidth="1000.0"
+            xmlns="http://javafx.com/javafx/19"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="at.fhtw.swen2.tourxultra.presentation.view.ApplicationView">
+
+
+    <!--    navbar on top-->
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <menus>
+                <!--                <Menu mnemonicParsing="false"-->
+                <!--                      text="%menu.file.title">-->
+                <!--                    <items>-->
+                <!--                        <MenuItem-->
+                <!--                                fx:id="miPreferences"-->
+                <!--                                mnemonicParsing="false"-->
+                <!--                                text="%menu.file.preferences"/>-->
+                <!--                        <SeparatorMenuItem-->
+                <!--                                mnemonicParsing="false"/>-->
+                <!--                        <MenuItem fx:id="miQuit"-->
+                <!--                                  mnemonicParsing="false"-->
+                <!--                                  onAction="#onFileClose"-->
+                <!--                                  text="%menu.file.quit"/>-->
+                <!--                    </items>-->
+                <!--                </Menu>-->
+                <!--                <Menu mnemonicParsing="false"-->
+                <!--                      text="%menu.edit.title">-->
+                <!--                    <items>-->
+                <!--                        <MenuItem fx:id="miEdit"-->
+                <!--                                  mnemonicParsing="false"-->
+                <!--                                  onAction="#onHelpAbout"-->
+                <!--                                  text="%menu.edit.title"/>-->
+                <!--                    </items>-->
+                <!--                </Menu>-->
+                <!--                <Menu mnemonicParsing="false"-->
+                <!--                      text="%menu.options.title">-->
+                <!--                    <items>-->
+                <!--                        <MenuItem-->
+                <!--                                fx:id="miOptions"-->
+                <!--                                mnemonicParsing="false"-->
+                <!--                                onAction="#onHelpAbout"-->
+                <!--                                text="%menu.options.title"/>-->
+                <!--                    </items>-->
+                <!--                </Menu>-->
+                <Menu mnemonicParsing="false"
+                      text="About">
+                    <items>
+                        <MenuItem fx:id="miAbout"
+                                  mnemonicParsing="false"
+                                  onAction="#onHelpAbout"
+                                  text="%menu.help.about"/>
+                    </items>
+                </Menu>
+                <!--                <Menu mnemonicParsing="false"-->
+                <!--                      text="Import Tour">-->
+                <!--                    <items>-->
+                <!--                        <MenuItem-->
+                <!--                                mnemonicParsing="false"-->
+                <!--                                onAction="#importTourMenuButtonAction"-->
+                <!--                                text="Import Tour"/>-->
+                <!--                    </items>-->
+                <!--                </Menu>-->
+
+            </menus>
+        </MenuBar>
+    </top>
+
+
+    <!--    center / main view-->
+    <center>
+
+        <TabPane fx:id="mainTabPane"
+                 prefHeight="200.0"
+                 prefWidth="200.0"
+                 tabClosingPolicy="UNAVAILABLE"
+                 BorderPane.alignment="CENTER">
+            <tabs>
+
+                <Tab text="Welcome">
+                    <content>
+                        <AnchorPane
+                                maxHeight="1.7976931348623157E308"
+                                maxWidth="1.7976931348623157E308">
+
+                            <fx:include
+                                    source="WelcomeScreen.fxml"
+                                    AnchorPane.bottomAnchor="0.0"
+                                    AnchorPane.leftAnchor="0.0"
+                                    AnchorPane.rightAnchor="0.0"
+                                    AnchorPane.topAnchor="0.0"/>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+
+                <Tab text="Tours">
+                    <content>
+                        <SplitPane disable="true"
+                                   dividerPositions="0.265">
+                            <items>
+                                <AnchorPane
+                                        fx:id="newTourPane"
+                                        maxHeight="1.7976931348623157E308"
+                                        maxWidth="1.7976931348623157E308">
+                                    <children>
+                                        <fx:include
+                                                source="./Tour/NewTour.fxml"
+                                                AnchorPane.bottomAnchor="0.0"
+                                                AnchorPane.leftAnchor="0.0"
+                                                AnchorPane.rightAnchor="0.0"
+                                                AnchorPane.topAnchor="0.0"/>
+                                    </children>
+                                </AnchorPane>
+
+                                <AnchorPane
+                                        fx:id="tourListPane"
+                                        minHeight="0.0"
+                                        minWidth="0.0"
+                                        prefHeight="319.0"
+                                        prefWidth="542.0">
+
+                                    <fx:include
+                                            source="./Tour/TourSearch.fxml"
+                                            AnchorPane.bottomAnchor="0.0"
+                                            AnchorPane.leftAnchor="0.0"
+                                            AnchorPane.rightAnchor="0.0"
+                                            AnchorPane.topAnchor="0.0"/>
+
+                                    <fx:include
+                                            source="./Tour/TourList.fxml"
+                                            AnchorPane.bottomAnchor="0.0"
+                                            AnchorPane.leftAnchor="0.0"
+                                            AnchorPane.rightAnchor="0.0"
+                                            AnchorPane.topAnchor="30.0"/>
+
+
+                                </AnchorPane>
+                            </items>
+                        </SplitPane>
+                    </content>
+                </Tab>
+
+                <Tab
+                        text="Tour Details"
+                        fx:id="tourDetailsTab"
+                >
+                    <AnchorPane
+                            maxHeight="1.7976931348623157E308"
+                            maxWidth="1.7976931348623157E308">
+
+                        <fx:include
+                                source="./Tour/TourDetail.fxml"
+                                AnchorPane.bottomAnchor="0.0"
+                                AnchorPane.leftAnchor="0.0"
+                                AnchorPane.rightAnchor="0.0"
+                                AnchorPane.topAnchor="0.0"/>
+                    </AnchorPane>
+                </Tab>
+
+                <Tab
+                        text="Logs"
+                        fx:id="tourLogsTab">
+                    <content>
+                        <SplitPane disable="true"
+                                   dividerPositions="0.265">
+                            <items>
+                                <AnchorPane
+                                        fx:id="newLogPane"
+                                        maxHeight="1.7976931348623157E308"
+                                        maxWidth="1.7976931348623157E308">
+                                    <children>
+                                        <fx:include
+                                                source="./TourLog/NewLog.fxml"
+                                                AnchorPane.bottomAnchor="0.0"
+                                                AnchorPane.leftAnchor="0.0"
+                                                AnchorPane.rightAnchor="0.0"
+                                                AnchorPane.topAnchor="0.0"/>
+                                    </children>
+                                </AnchorPane>
+
+                                <AnchorPane
+                                        fx:id="logListPane"
+                                        minHeight="0.0"
+                                        minWidth="0.0"
+                                        prefHeight="319.0"
+                                        prefWidth="542.0">
+
+                                    <fx:include
+                                            source="./TourLog/TourPreview.fxml"
+                                            AnchorPane.bottomAnchor="0.0"
+                                            AnchorPane.leftAnchor="0.0"
+                                            AnchorPane.rightAnchor="0.0"
+                                            AnchorPane.topAnchor="0.0"/>
+
+                                    <fx:include
+                                            source="./TourLog/LogSearch.fxml"
+                                            AnchorPane.bottomAnchor="0.0"
+                                            AnchorPane.leftAnchor="0.0"
+                                            AnchorPane.rightAnchor="0.0"
+                                            AnchorPane.topAnchor="100.0"/>
+
+                                    <fx:include
+                                            source="./TourLog/LogList.fxml"
+                                            AnchorPane.bottomAnchor="0.0"
+                                            AnchorPane.leftAnchor="0.0"
+                                            AnchorPane.rightAnchor="0.0"
+                                            AnchorPane.topAnchor="150.0"/>
+
+
+                                </AnchorPane>
+                            </items>
+                        </SplitPane>
+                    </content>
+                </Tab>
+
+                <Tab
+                        text="Log Details"
+                        fx:id="logDetailsTab"
+                >
+                    <AnchorPane
+                            maxHeight="1.7976931348623157E308"
+                            maxWidth="1.7976931348623157E308">
+
+                        <fx:include
+                                source="./TourLog/LogDetail.fxml"
+                                AnchorPane.bottomAnchor="0.0"
+                                AnchorPane.leftAnchor="0.0"
+                                AnchorPane.rightAnchor="0.0"
+                                AnchorPane.topAnchor="0.0"/>
+                    </AnchorPane>
+                </Tab>
+
+            </tabs>
+
+        </TabPane>
+
+    </center>
+    <bottom>
+        <ToolBar maxHeight="20.0"
+                 nodeOrientation="RIGHT_TO_LEFT"
+                 prefHeight="20.0"
+                 BorderPane.alignment="CENTER">
+            <items>
+                <Label fx:id="tbMonitorStatus"/>
+                <Label text="%tab.monitor.status"/>
+                <Separator
+                        orientation="VERTICAL"/>
+            </items>
+        </ToolBar>
+    </bottom>
+</BorderPane>

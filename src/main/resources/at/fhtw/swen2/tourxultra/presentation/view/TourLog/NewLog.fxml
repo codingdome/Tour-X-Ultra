@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+
+<?import javafx.scene.layout.HBox?>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="200.0" prefWidth="200.0"
+      spacing="8.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="at.fhtw.swen2.tourxultra.presentation.view.LogViews.NewLogView">
+
+    <padding>
+        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0"/>
+    </padding>
+
+    <!--Title-->
+    <Label style="-fx-text-fill: #390099;" text="New Log">
+        <font>
+            <Font name="Arial Bold" size="18.0"/>
+        </font>
+    </Label>
+    <Separator prefWidth="200.0"/>
+
+    <!--Inputs-->
+    <Text text="Date (dd/mm/yyyy)" style="-fx-font-weight: bold; -fx-text-fill: gray; -fx-font-size: 11px;"/>
+
+    <HBox spacing="10">
+        <TextField fx:id="tf_date" promptText="Format: dd/mm/yyyy"/>
+        <Button onAction="#setDateToToday" text="Today"
+                style="-fx-padding: 4px 16px;
+           -fx-text-fill: white;
+           -fx-font-weight: bold;
+           -fx-background-color: #390099;
+           -fx-cursor: hand;"/>
+    </HBox>
+
+
+    <Text text="Comment" style="-fx-font-weight: bold; -fx-text-fill: gray; -fx-font-size: 11px;"/>
+    <TextField fx:id="tf_comment" promptText="Enter some comments for your tourlog."/>
+
+    <Text text="Difficulty (1-10 (1=easy))" style="-fx-font-weight: bold; -fx-text-fill: gray; -fx-font-size: 11px;"/>
+    <TextField fx:id="tf_difficulty" promptText="Enter any value between 1-10 (1 = very easy)"/>
+
+    <Text text="Duration (in min)" style="-fx-font-weight: bold; -fx-text-fill: gray; -fx-font-size: 11px;"/>
+    <TextField fx:id="tf_duration" promptText="How long did you need? (in min)"/>
+
+    <Text text="Rating (1-5 (1=very good))" style="-fx-font-weight: bold; -fx-text-fill: gray; -fx-font-size: 11px;"/>
+    <TextField fx:id="tf_rating" promptText="How was it? 1-10 (1 = very bad)"/>
+
+    <!--Submit Button-->
+    <HBox style="-fx-padding: 10px 0px">
+        <Button onAction="#submitButtonAction" text="Add New Tour-log"
+                style="-fx-padding: 8px 16px;
+           -fx-text-fill: white;
+           -fx-font-weight: bold;
+           -fx-background-color: #390099;
+           -fx-cursor: hand;"
+        />
+    </HBox>
+
+
+    <Label fx:id="l_feedback" style="-fx-text-fill: #ff0000 !important; -fx-font-size: 11px; -fx-wrap-text: true;"/>
+
+    <Separator prefWidth="200.0"/>
+
+</VBox>
