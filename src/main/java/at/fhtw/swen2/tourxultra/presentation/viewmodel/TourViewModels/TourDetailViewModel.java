@@ -8,8 +8,11 @@ import at.fhtw.swen2.tourxultra.service.impl.ImportExportServiceImpl;
 import at.fhtw.swen2.tourxultra.service.impl.TourServiceImpl;
 import at.fhtw.swen2.tourxultra.service.io.ImportExportService;
 import com.google.gson.Gson;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -103,6 +106,12 @@ public class TourDetailViewModel {
     public void exportTour() {
         importExportService.exportTour(tour);
     }
+
+    public void createTourReport() {
+//        System.out.println(tourService.createTourReport(tour));
+        importExportService.exportTourReport(tourService.createTourReport(tour));
+    }
+
 
     public String getName() {
         return name.get();

@@ -98,4 +98,19 @@ public class LogServiceImpl implements LogService {
     public Long countLogsForTour(Tour tour) {
         return logRepository.countByTour(tourMapper.toEntity(tour));
     }
+
+    @Override
+    public Double getAVGdifficultyForTour(Tour tour) {
+        return logRepository.getAverageDifficultyForTour(tourMapper.toEntity(tour));
+    }
+
+    @Override
+    public Double getAVGdurationForTour(Tour tour) {
+        return logRepository.getAverageDurationForTour(tourMapper.toEntity(tour));
+    }
+
+    @Override
+    public Double getAVGratingForTour(Tour tour) {
+        return logRepository.getAverageRatingForTour(tourMapper.toEntity(tour));
+    }
 }

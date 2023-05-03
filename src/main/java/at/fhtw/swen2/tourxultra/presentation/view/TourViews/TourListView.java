@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -96,6 +97,8 @@ public class TourListView implements Initializable {
         tourDetailViewModel.setPopularity(tour.getPopularity());
         tourDetailViewModel.setChildFriendliness(tour.getChildFriendliness());
         tourDetailViewModel.setFeedback("");
+
+
     }
 
     private void setTourPreviewView(Tour tour) {

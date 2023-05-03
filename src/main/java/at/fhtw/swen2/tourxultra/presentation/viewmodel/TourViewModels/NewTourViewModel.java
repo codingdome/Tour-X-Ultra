@@ -2,6 +2,7 @@ package at.fhtw.swen2.tourxultra.presentation.viewmodel.TourViewModels;
 
 import at.fhtw.swen2.tourxultra.service.TourService;
 import at.fhtw.swen2.tourxultra.service.dto.Tour;
+import at.fhtw.swen2.tourxultra.service.io.MapQuestApiAssistant;
 import javafx.beans.property.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -25,6 +26,8 @@ public class NewTourViewModel {
     @Autowired
     private TourService tourService;
 
+    MapQuestApiAssistant mapQuestApiAssistant = new MapQuestApiAssistant();
+
     public NewTourViewModel() {
     }
 
@@ -42,6 +45,8 @@ public class NewTourViewModel {
 
     public void addNewTour() {
         Tour tour = Tour.builder().name(getName()).description(getDescription()).departure(getDeparture()).arrival(getArrival()).transport(getTransport()).distance(getDistance()).duration(getDuration()).build();
+        mapQuestApiAssistant.retrieveData(tour.getDeparture(), tour.getArrival());
+        tour.setImgUrl(mapQuestApiAssistant.getImageUrl());
         //1 add tour
         tour = tourService.addNew(tour);
         if (tour != null) {

@@ -6,14 +6,21 @@ import at.fhtw.swen2.tourxultra.presentation.viewmodel.TourViewModels.TourDetail
 import at.fhtw.swen2.tourxultra.service.io.ImportExportService;
 import at.fhtw.swen2.tourxultra.service.util.InputValidation;
 import at.fhtw.swen2.tourxultra.service.util.InputValidationImpl;
+import com.sun.javafx.binding.StringFormatter;
+import javafx.beans.property.Property;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 import javafx.util.converter.NumberStringConverter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +33,19 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import java.util.concurrent.Callable;
+
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+
 @Component
 @Scope("prototype")
 @Slf4j
 public class TourDetailView implements Initializable {
 
     private final InputValidation inputValidation = new InputValidationImpl();
+
 
     @Autowired
     TourDetailViewModel tourDetailViewModel;
@@ -75,6 +89,11 @@ public class TourDetailView implements Initializable {
     public Text t_feedback;
 
     @FXML
+    public ImageView iv_mapQuest;
+
+    private ObjectProperty<Image> imageProperty;
+
+    @FXML
     private Stage stage;
 
     @Override
@@ -96,7 +115,11 @@ public class TourDetailView implements Initializable {
         t_popularity.textProperty().bindBidirectional(tourDetailViewModel.popularityProperty(), new NumberStringConverter());
         t_childFriendliness.textProperty().bindBidirectional(tourDetailViewModel.childFriendlinessProperty(), new NumberStringConverter());
         t_feedback.textProperty().bindBidirectional(tourDetailViewModel.feedbackProperty());
+
+        // Bidirectional binding of URL of img with imgURL Property of tourDetailViewModel
+
     }
+
 
     public void editTourButtonAction(ActionEvent actionEvent) {
         unlockInput();
@@ -165,5 +188,10 @@ public class TourDetailView implements Initializable {
         } else {
             System.out.println("No file selected");
         }
+    }
+
+    public void createTourReportButtonAction(ActionEvent actionEvent) {
+        tourDetailViewModel.createTourReport();
+        t_feedback.setText("Successfully exported.");
     }
 }

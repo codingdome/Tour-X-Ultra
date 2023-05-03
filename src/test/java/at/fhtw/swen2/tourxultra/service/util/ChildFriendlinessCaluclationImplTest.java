@@ -10,7 +10,6 @@ class ChildFriendlinessCaluclationImplTest {
 
     @Test
     void getTenScore() {
-        
+        System.out.println(childFriendlinessCalculation.calculateNewChildFriendliness(1, 10.0, 1000.0));
     }
-
 }

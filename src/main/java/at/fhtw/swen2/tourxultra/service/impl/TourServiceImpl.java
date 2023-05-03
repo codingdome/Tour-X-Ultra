@@ -2,6 +2,9 @@ package at.fhtw.swen2.tourxultra.service.impl;
 
 import at.fhtw.swen2.tourxultra.presentation.viewmodel.TourViewModels.TourListViewModel;
 import at.fhtw.swen2.tourxultra.service.LogService;
+import at.fhtw.swen2.tourxultra.service.dto.SumTour;
+import at.fhtw.swen2.tourxultra.service.dto.SummarizeReport;
+import at.fhtw.swen2.tourxultra.service.dto.TourReport;
 import com.google.gson.Gson;
 import at.fhtw.swen2.tourxultra.persistence.entities.TourEntity;
 import at.fhtw.swen2.tourxultra.persistence.repositories.TourRepository;
@@ -16,6 +19,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -82,6 +88,10 @@ public class TourServiceImpl implements TourService {
         return null;
     }
 
+    @Override
+    public TourReport createTourReport(Tour tour) {
+        return TourReport.builder().tour(tour).tourLogs(logService.getLogListByTour(tour)).build();
+    }
 
     private Tour fileToTour(File file) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -95,5 +105,18 @@ public class TourServiceImpl implements TourService {
         Gson gson = new Gson();
         Tour tour = gson.fromJson(json, Tour.class);
         return tour;
+    }
+
+    @Override
+    public SummarizeReport createSummarizeReport() {
+        LocalDate today = LocalDate.now();
+        Date date = Date.from(today.atStartOfDay().atZone(java.time.ZoneId.systemDefault()).toInstant());
+        List<Tour> tours = getTourList();
+        List<SumTour> sumTours = new ArrayList<>();
+        for (Tour tour : tours) {
+            sumTours.add(SumTour.builder().tour(tour).avgDifficulty(logService.getAVGdifficultyForTour(tour)).avgDuration(logService.getAVGdurationForTour(tour)).avgRating(logService.getAVGratingForTour(tour)).build());
+        }
+        System.out.println(SummarizeReport.builder().sumTours(sumTours).date(date).build());
+        return SummarizeReport.builder().sumTours(sumTours).date(date).build();
     }
 }

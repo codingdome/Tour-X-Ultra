@@ -19,4 +19,10 @@ public interface LogService {
 
     List<Log> getLogListByTour(Tour tour);
 
+    Double getAVGdifficultyForTour(Tour tour);
+
+    Double getAVGdurationForTour(Tour tour);
+
+    Double getAVGratingForTour(Tour tour);
+
 }

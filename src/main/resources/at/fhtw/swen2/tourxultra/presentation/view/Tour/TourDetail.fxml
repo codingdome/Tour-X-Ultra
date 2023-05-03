@@ -132,14 +132,14 @@
                         </HBox>
                         <Text style="-fx-font-style: italic" text="This values might be outdated if you deleted logs. It will be up to date after adding a new log."/>
                         <Separator prefWidth="200.0"/>
-                        <ImageView fitHeight="200.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
-                            <Image url="https://www.mapquestapi.com/staticmap/v5/map?key=WwtPSYRcTQ3d3iNg7PSjfvQmezzV1pQe&amp;center=Boston,MA&amp;size=900,200@2x"/>
+
+                        <ImageView fx:id="iv_mapQuest" fitHeight="200.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="http://www.mapquestapi.com/staticmap/v5/map?key=WwtPSYRcTQ3d3iNg7PSjfvQmezzV1pQe&amp;locations=48.76778,9.17203|50.11208,8.68341&amp;size=600,400"></Image>
                         </ImageView>
+
                         <Separator prefWidth="200.0"/>
                         <HBox spacing="5.0">
                             <children>
-
-
                                 <Button
                                         style="-fx-padding: 8px 16px;
                                        -fx-text-fill: white;
@@ -177,11 +177,21 @@
                                         style="-fx-padding: 8px 16px;
                                 -fx-text-fill: white;
                                 -fx-font-weight: bold;
-                                -fx-background-color: #ff5400;
+                                -fx-background-color: #000000;
                                 -fx-cursor: hand;"
                                         onAction="#deleteTourButtonAction"
                                         mnemonicParsing="false"
                                         text="Delete Tour"/>
+
+                                <Button
+                                        style="-fx-padding: 8px 16px;
+                                -fx-text-fill: white;
+                                -fx-font-weight: bold;
+                                -fx-background-color: #000000;
+                                -fx-cursor: hand;"
+                                        onAction="#createTourReportButtonAction"
+                                        mnemonicParsing="false"
+                                        text="Create Tour Report"/>
 
 
                                 <Button style="-fx-padding: 8px 16px;
