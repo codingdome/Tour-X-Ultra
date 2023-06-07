@@ -19,12 +19,12 @@
             <children>
                 <VBox spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tour log for:">
+                        <Text style="-fx-text-fill: #000000;" strokeType="OUTSIDE" strokeWidth="0.0" text="Tour log for:">
                             <font>
                                 <Font name="Arial Bold" size="13.0"/>
                             </font>
                         </Text>
-                        <Text fx:id="t_tour_name" strokeType="OUTSIDE" strokeWidth="0.0" text="Eine coole Tour">
+                        <Text style="-fx-text-fill: #000000;" fx:id="t_tour_name" strokeType="OUTSIDE" strokeWidth="0.0" text="Eine coole Tour">
                             <font>
                                 <Font name="Arial Bold" size="24.0"/>
                             </font>
@@ -103,18 +103,18 @@
                                 <Button style="-fx-padding: 8px 16px;
                                 -fx-text-fill: white;
                                 -fx-font-weight: bold;
-                                -fx-background-color: #ff5400;
-                                -fx-cursor: hand;" onAction="#editLogButtonAction" mnemonicParsing="false" text="Edit Log"/>
+                                -fx-background-color: #000000;
+                                -fx-cursor: hand;" onAction="#editLogButtonAction" mnemonicParsing="false" text="Edit"/>
                                 <Button style="-fx-padding: 8px 16px;
                                 -fx-text-fill: white;
                                 -fx-font-weight: bold;
-                                -fx-background-color: #ff5400;
-                                -fx-cursor: hand;" onAction="#saveChangesButtonAction" mnemonicParsing="false" text="Save Changes"/>
+                                -fx-background-color: #000000;
+                                -fx-cursor: hand;" onAction="#saveChangesButtonAction" mnemonicParsing="false" text="Save"/>
                                 <Button style="-fx-padding: 8px 16px;
                                 -fx-text-fill: white;
                                 -fx-font-weight: bold;
-                                -fx-background-color: #ff5400;
-                                -fx-cursor: hand;" onAction="#deleteLogButtonAction" mnemonicParsing="false" text="Delete Log"/>
+                                -fx-background-color: #000000;
+                                -fx-cursor: hand;" onAction="#deleteLogButtonAction" mnemonicParsing="false" text="Delete"/>
                             </children>
                         </HBox>
                         <Text fx:id="t_feedback" style="-fx-text-fill: #ff0000 !important; -fx-font-size: 11px; -fx-wrap-text: true;"/>

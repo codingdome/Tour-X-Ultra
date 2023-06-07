@@ -2,9 +2,10 @@ package at.fhtw.swen2.tourxultra.persistence.entities;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-class TourEntityTest {
+public class EntityBuilderTest {
 
     @Test
     void tourEntityBuilderTest() {
@@ -27,4 +28,24 @@ class TourEntityTest {
         assertNull(tour.getName());
     }
 
+    @Test
+    void logEntityBuilderTest() {
+        LogEntity logEntity = LogEntity.builder().comment("comment").date("date").difficulty(1).duration(1).rating(1).tour(null).build();
+        assertEquals(1, logEntity.getRating());
+        assertEquals(1, logEntity.getDuration());
+        assertNull(logEntity.getTour());
+    }
+
+    @Test
+    void logEntityBuilderIncompleteTest() {
+        LogEntity logEntity = LogEntity.builder().comment("comment").build();
+        assertEquals("comment", logEntity.getComment());
+        assertNull(logEntity.getTour());
+    }
+
+    @Test
+    void logEntityBuilderEmptyTest() {
+        LogEntity logEntity = LogEntity.builder().build();
+        assertNull(logEntity.getTour());
+    }
 }

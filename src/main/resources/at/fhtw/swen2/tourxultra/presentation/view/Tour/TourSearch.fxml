@@ -14,7 +14,8 @@
               AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
             <children>
                 <Label text="Search Tours:"/>
-                <TextField fx:id="tf_search" HBox.hgrow="ALWAYS" promptText="Filter by: name, transport type, departure, arrival, distance or duration."/>
+                <TextField fx:id="tf_search" HBox.hgrow="ALWAYS" promptText="Filter by: name, transport type, departure, arrival, distance or duration."
+                           style="fx-padding: 10px 20px; -fx-text-fill: black; -fx-font-size: 14px; -fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 2px"/>
                 <Button style="-fx-background-color: #390099" fx:id="b_search" text="Search" HBox.hgrow="ALWAYS"/>
             </children>
         </HBox>

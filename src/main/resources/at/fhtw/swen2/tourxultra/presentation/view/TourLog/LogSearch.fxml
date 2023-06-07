@@ -15,7 +15,7 @@
             <children>
                 <Label text="Search Logs:"/>
                 <TextField fx:id="tf_search" HBox.hgrow="ALWAYS" promptText="Filter by: date, comment, difficulty, duration, or rating."/>
-                <Button style="-fx-background-color: #390099" fx:id="b_search" text="Search" HBox.hgrow="ALWAYS"/>
+                <Button style="-fx-background-color: #02023a" fx:id="b_search" text="Search" HBox.hgrow="ALWAYS"/>
             </children>
         </HBox>
 

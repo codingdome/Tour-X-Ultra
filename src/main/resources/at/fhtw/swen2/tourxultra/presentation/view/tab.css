@@ -1,0 +1,18 @@
+.tab {
+    -fx-background-color: #000000;
+    -fx-text-fill: white;
+    -fx-padding: 0 10px;
+}
+
+.tab .tab-label {
+    -fx-text-fill: white;
+}
+
+.tab:selected {
+    -fx-background-color: #0037ff;
+    -fx-border-radius: 5px;
+}
+
+.menu:hover {
+    -fx-background-color: black;
+}

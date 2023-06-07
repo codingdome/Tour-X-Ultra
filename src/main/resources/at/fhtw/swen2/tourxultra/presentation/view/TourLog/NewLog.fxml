@@ -19,7 +19,7 @@
     </padding>
 
     <!--Title-->
-    <Label style="-fx-text-fill: #390099;" text="New Log">
+    <Label style="-fx-text-fill: #000000;" text="New Log">
         <font>
             <Font name="Arial Bold" size="18.0"/>
         </font>
@@ -35,7 +35,7 @@
                 style="-fx-padding: 4px 16px;
            -fx-text-fill: white;
            -fx-font-weight: bold;
-           -fx-background-color: #390099;
+           -fx-background-color: #000000;
            -fx-cursor: hand;"/>
     </HBox>
 
@@ -54,11 +54,11 @@
 
     <!--Submit Button-->
     <HBox style="-fx-padding: 10px 0px">
-        <Button onAction="#submitButtonAction" text="Add New Tour-log"
+        <Button onAction="#submitButtonAction" text="Add Log"
                 style="-fx-padding: 8px 16px;
            -fx-text-fill: white;
            -fx-font-weight: bold;
-           -fx-background-color: #390099;
+           -fx-background-color: #000000;
            -fx-cursor: hand;"
         />
     </HBox>

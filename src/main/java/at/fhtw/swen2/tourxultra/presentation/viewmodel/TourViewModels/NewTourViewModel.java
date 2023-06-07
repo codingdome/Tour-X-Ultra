@@ -45,8 +45,8 @@ public class NewTourViewModel {
 
     public void addNewTour() {
         Tour tour = Tour.builder().name(getName()).description(getDescription()).departure(getDeparture()).arrival(getArrival()).transport(getTransport()).distance(getDistance()).duration(getDuration()).build();
-        mapQuestApiAssistant.retrieveData(tour.getDeparture(), tour.getArrival());
-        tour.setImgUrl(mapQuestApiAssistant.getImageUrl());
+        tour.setImgUrl(mapQuestApiAssistant.returnImgUrl(tour.getDeparture(), tour.getArrival()));
+
         //1 add tour
         tour = tourService.addNew(tour);
         if (tour != null) {

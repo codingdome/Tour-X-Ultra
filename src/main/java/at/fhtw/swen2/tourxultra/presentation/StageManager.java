@@ -23,12 +23,12 @@ import java.util.Optional;
 @Slf4j
 public class StageManager {
     public static final String PRIMARY_STAGE_PROPERTY = "primaryStage";
-    
+
     private final Application application;
     private final ViewManager viewManager;
 
     private final Property<Stage> primaryStage;
-    
+
     public StageManager(Application application, ViewManager viewManager) {
         this.application = application;
         this.viewManager = viewManager;
@@ -49,16 +49,16 @@ public class StageManager {
         log.debug("Starting application, loading Application scene");
 
         Stage stage = event.getStage();
-        primaryStage.setValue(stage);      
-    
+        primaryStage.setValue(stage);
+
         try {
             Parent parent = (Parent) viewManager.load("at/fhtw/swen2/tourxultra/presentation/view/Application", stage);
             stage.setScene(new Scene(parent));
         } catch (IOException e) {
             log.error("Error occurred while creating Application scene", e);
-        }                
+        }
 
-        stage.show();  
+        stage.show();
     }
 
     @EventListener
@@ -66,14 +66,14 @@ public class StageManager {
         application.stop();
     }
 
-    @EventListener 
+    @EventListener
     public void onApplicationError(ApplicationErrorEvent event) {
         Platform.runLater(() -> {
             Notifications.create()
-                .owner(primaryStage.getValue())
-                .text(event.getMessage())
-                .position(Pos.BOTTOM_CENTER)
-                .showError();
+                    .owner(primaryStage.getValue())
+                    .text(event.getMessage())
+                    .position(Pos.BOTTOM_CENTER)
+                    .showError();
         });
     }
 }

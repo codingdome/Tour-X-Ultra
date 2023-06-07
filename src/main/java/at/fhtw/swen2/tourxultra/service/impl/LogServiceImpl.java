@@ -40,33 +40,7 @@ public class LogServiceImpl implements LogService {
         if (log == null) {
             return null;
         }
-        //collect all values for updating tour:
-        Long currentPopularity = logRepository.countByTour(tourMapper.toEntity(log.getTour()));
-
-        //DISTANCE:
-        int distance = log.getTour().getDistance();
-        //AVG DURATION + DIFFICULT after save log:
-        //save new log
-        LogEntity logEntity = logRepository.save(logMapper.toEntity(log));
-
-        Double averageDifficulty = logRepository.getAverageDifficulty();
-        Double averageDuration = logRepository.getAverageDuration();
-
-
-        //update tour
-        TourEntity updatetTourEntity = logEntity.getTour();
-
-        updatetTourEntity.setPopularity((int) (currentPopularity + 1));
-        updatetTourEntity.setChildFriendliness(childFriendlinessCalculation.calculateNewChildFriendliness(distance, averageDifficulty, averageDuration));
-
-        tourRepository.save(updatetTourEntity);
-
-        System.out.println(logRepository.findAll());
-        System.out.println(tourRepository.findAll());
-
-        logEntity.setTour(updatetTourEntity);
-
-        return logMapper.fromEntity(logEntity);
+        return handleAddUpdateLog(log);
     }
 
     @Override
@@ -80,8 +54,7 @@ public class LogServiceImpl implements LogService {
         if (log == null) {
             return null;
         }
-        LogEntity logEntity = logRepository.save(logMapper.toEntity(log));
-        return logMapper.fromEntity(logEntity);
+        return handleAddUpdateLog(log);
     }
 
     @Override
@@ -112,5 +85,39 @@ public class LogServiceImpl implements LogService {
     @Override
     public Double getAVGratingForTour(Tour tour) {
         return logRepository.getAverageRatingForTour(tourMapper.toEntity(tour));
+    }
+
+    private Log handleAddUpdateLog(Log log) {
+        // 1 save new log
+        LogEntity logEntity = logRepository.save(logMapper.toEntity(log));
+
+        // 2 collect all data to update tour
+        //popularity
+        Long newPopularity = logRepository.countByTour(tourMapper.toEntity(log.getTour()));
+        //avg difficulty
+        Double newAvgDifficulty = logRepository.getAverageDifficultyForTour(tourMapper.toEntity(log.getTour()));
+        //avg duration
+        Double newAvgDuration = logRepository.getAverageDurationForTour(tourMapper.toEntity(log.getTour()));
+        //distance
+        int distance = log.getTour().getDistance();
+
+        // 3 calculate childFriendliness
+        int newChildFriendliness = childFriendlinessCalculation.calculateNewChildFriendliness(distance, newAvgDifficulty, newAvgDuration);
+
+        // 4 get Tour to update
+        TourEntity tourEntityToUpdate = logEntity.getTour();
+
+        // 5 set new values for this tour
+        tourEntityToUpdate.setPopularity(Math.toIntExact(newPopularity));
+        tourEntityToUpdate.setChildFriendliness(newChildFriendliness);
+
+        // 6 save updated tour
+        TourEntity tourResult = tourRepository.save(tourEntityToUpdate);
+
+        // 7 update the tour for the log entity
+        logEntity.setTour(tourResult);
+
+        // 8 return new log
+        return logMapper.fromEntity(logEntity);
     }
 }

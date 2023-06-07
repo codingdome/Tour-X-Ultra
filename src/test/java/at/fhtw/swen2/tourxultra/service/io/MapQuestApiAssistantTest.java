@@ -9,10 +9,9 @@ class MapQuestApiAssistantTest {
 
     @Autowired
     MapQuestApiAssistant mapQuestApiAssistant = new MapQuestApiAssistant();
-
+    
     @Test
-    void testApi() {
-        mapQuestApiAssistant.retrieveData("Stuttgart", "Frankfurt");
-        System.out.println(mapQuestApiAssistant.getImageUrl());
+    void returnImgUrl() {
+        System.out.println(mapQuestApiAssistant.returnImgUrl("Vienna", "Stuttgart"));
     }
 }

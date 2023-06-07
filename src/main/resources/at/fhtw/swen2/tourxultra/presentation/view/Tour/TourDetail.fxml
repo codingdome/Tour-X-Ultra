@@ -26,12 +26,12 @@
             <children>
                 <VBox spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tour Name">
+                        <Text style="-fx-text-fill: #000000;" strokeType="OUTSIDE" strokeWidth="0.0" text="Tour Name">
                             <font>
                                 <Font name="Arial Bold" size="13.0"/>
                             </font>
                         </Text>
-                        <Text style="-fx-text-fill: #390099;" fx:id="t_name" strokeType="OUTSIDE" strokeWidth="0.0" text="Eine coole Tour">
+                        <Text style="-fx-text-fill: #000000;" fx:id="t_name" strokeType="OUTSIDE" strokeWidth="0.0" text="Eine coole Tour">
                             <font>
                                 <Font name="Arial Bold" size="24.0"/>
                             </font>
@@ -120,7 +120,7 @@
                                 </VBox>
                                 <VBox>
                                     <children>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Child-friendliness (1-10)">
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Child-friendliness (higher = worse)">
                                             <font>
                                                 <Font name="Arial Bold" size="13.0"/>
                                             </font>
@@ -133,8 +133,8 @@
                         <Text style="-fx-font-style: italic" text="This values might be outdated if you deleted logs. It will be up to date after adding a new log."/>
                         <Separator prefWidth="200.0"/>
 
-                        <ImageView fx:id="iv_mapQuest" fitHeight="200.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
-                            <Image url="http://www.mapquestapi.com/staticmap/v5/map?key=WwtPSYRcTQ3d3iNg7PSjfvQmezzV1pQe&amp;locations=48.76778,9.17203|50.11208,8.68341&amp;size=600,400"></Image>
+                        <ImageView fx:id="iv_mapQuest" fitHeight="400.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
+                            <Image fx:id="i_mapQuest" url="https://www.mapquestapi.com/staticmap/v5/map?start=Vienna&amp;end=Munich&amp;size=1000,300@2x&amp;format=png&amp;key=WwtPSYRcTQ3d3iNg7PSjfvQmezzV1pQe"></Image>
                         </ImageView>
 
                         <Separator prefWidth="200.0"/>
@@ -144,44 +144,34 @@
                                         style="-fx-padding: 8px 16px;
                                        -fx-text-fill: white;
                                        -fx-font-weight: bold;
-                                       -fx-background-color: #390099;
+                                       -fx-background-color: #000000;
                                        -fx-cursor: hand;"
                                         onAction="#editTourButtonAction"
                                         mnemonicParsing="false"
-                                        text="Edit Tour"/>
+                                        text="Edit"/>
 
 
                                 <Button style="-fx-padding: 8px 16px;
                                 -fx-text-fill: white;
                                 -fx-font-weight: bold;
-                                -fx-background-color: #390099;
-                                -fx-cursor: hand;" onAction="#saveChangesButtonAction" mnemonicParsing="false" text="Save Changes"/>
+                                -fx-background-color: #000000;
+                                -fx-cursor: hand;" onAction="#saveChangesButtonAction" mnemonicParsing="false" text="Save"/>
 
 
                                 <Button style="-fx-padding: 8px 16px;
                                 -fx-text-fill: white;
                                    -fx-font-weight: bold;
-                                    -fx-background-color: #9e0059;
-                                   -fx-cursor: hand;" onAction="#exportTourButtonAction" mnemonicParsing="false" text="Export Tour"/>
+                                    -fx-background-color: #000000;
+                                   -fx-cursor: hand;" onAction="#exportTourButtonAction" mnemonicParsing="false" text="Export"/>
 
 
                                 <Button style="-fx-padding: 8px 16px;
                                -fx-text-fill: white;
                                -fx-font-weight: bold;
-                               -fx-background-color: #9e0059;
+                               -fx-background-color: #000000;
                                -fx-cursor: hand;"
-                                        onAction="#importTourButtonAction" mnemonicParsing="false" text="Import Tour"/>
+                                        onAction="#importTourButtonAction" mnemonicParsing="false" text="Import"/>
 
-
-                                <Button
-                                        style="-fx-padding: 8px 16px;
-                                -fx-text-fill: white;
-                                -fx-font-weight: bold;
-                                -fx-background-color: #000000;
-                                -fx-cursor: hand;"
-                                        onAction="#deleteTourButtonAction"
-                                        mnemonicParsing="false"
-                                        text="Delete Tour"/>
 
                                 <Button
                                         style="-fx-padding: 8px 16px;
@@ -197,8 +187,19 @@
                                 <Button style="-fx-padding: 8px 16px;
                                    -fx-text-fill: white;
                                    -fx-font-weight: bold;
-                                   -fx-background-color: #0466c8;
+                                   -fx-background-color: #000000;
                                    -fx-cursor: hand;" onAction="#showTourLogsButtonAction" mnemonicParsing="false" text="Show &amp; Add Tourlogs"/>
+
+                                <Button
+                                        style="-fx-padding: 8px 16px;
+                                        -fx-start-margin: 10px;
+                                -fx-text-fill: white;
+                                -fx-font-weight: bold;
+                                -fx-background-color: #000000;
+                                -fx-cursor: hand;"
+                                        onAction="#deleteTourButtonAction"
+                                        mnemonicParsing="false"
+                                        text="Delete"/>
                             </children>
 
 

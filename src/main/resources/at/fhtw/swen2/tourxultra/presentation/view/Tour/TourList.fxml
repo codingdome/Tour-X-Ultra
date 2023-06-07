@@ -23,4 +23,6 @@
         </VBox>
     </children>
 
+    <Text fx:id="t_loading" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0" text="Loading image..." style="-fx-text-fill: #0037ff; -fx-font-size: 30px; -fx-wrap-text: true"/>
+
 </AnchorPane>

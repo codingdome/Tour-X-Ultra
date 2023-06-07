@@ -87,6 +87,8 @@ public class TourDetailView implements Initializable {
     public Text t_childFriendliness;
     @FXML
     public Text t_feedback;
+    @FXML
+    public Image i_mapQuest;
 
     @FXML
     public ImageView iv_mapQuest;
@@ -116,7 +118,13 @@ public class TourDetailView implements Initializable {
         t_childFriendliness.textProperty().bindBidirectional(tourDetailViewModel.childFriendlinessProperty(), new NumberStringConverter());
         t_feedback.textProperty().bindBidirectional(tourDetailViewModel.feedbackProperty());
 
-        // Bidirectional binding of URL of img with imgURL Property of tourDetailViewModel
+        imageProperty = new SimpleObjectProperty<>();
+        iv_mapQuest.imageProperty().bind(imageProperty);
+
+        tourDetailViewModel.imgUrlProperty().addListener((observable, oldValue, newValue) -> {
+            Image image = new Image(newValue);
+            imageProperty.set(image);
+        });
 
     }
 

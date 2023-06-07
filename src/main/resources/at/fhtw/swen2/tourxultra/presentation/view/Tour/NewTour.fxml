@@ -19,7 +19,7 @@
     </padding>
 
     <!--Title-->
-    <Label style="-fx-text-fill: #390099;" text="New Tour">
+    <Label style="-fx-text-fill: #000000;" text="New Tour">
         <font>
             <Font name="Arial Bold" size="18.0"/>
         </font>
@@ -28,32 +28,39 @@
 
     <!--Inputs-->
     <Text text="Name" style="-fx-font-weight: bold; -fx-text-fill: gray; -fx-font-size: 11px;"/>
-    <TextField fx:id="tf_name" promptText="Enter the name of the tour."/>
+    <TextField fx:id="tf_name" promptText="Enter the name of the tour."
+               style="fx-padding: 10px 20px; -fx-text-fill: black; -fx-font-size: 14px; -fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 2px"/>
 
     <Text text="Description" style="-fx-font-weight: bold; -fx-text-fill: gray; -fx-font-size: 11px;"/>
-    <TextField fx:id="tf_description" promptText="Enter an description for your tour."/>
+    <TextField fx:id="tf_description" promptText="Enter an description for your tour."
+               style="fx-padding: 10px 20px; -fx-text-fill: black; -fx-font-size: 14px; -fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 2px"/>
 
     <Text text="Departure" style="-fx-font-weight: bold; -fx-text-fill: gray; -fx-font-size: 11px;"/>
-    <TextField fx:id="tf_departure" promptText="Where does the tour start?"/>
+    <TextField fx:id="tf_departure" promptText="Where does the tour start?"
+               style="fx-padding: 10px 20px; -fx-text-fill: black; -fx-font-size: 14px; -fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 2px"/>
 
     <Text text="Arrival" style="-fx-font-weight: bold; -fx-text-fill: gray; -fx-font-size: 11px;"/>
-    <TextField fx:id="tf_arrival" promptText="Where does the tour end?"/>
+    <TextField fx:id="tf_arrival" promptText="Where does the tour end?"
+               style="fx-padding: 10px 20px; -fx-text-fill: black; -fx-font-size: 14px; -fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 2px"/>
 
     <Text text="Transport" style="-fx-font-weight: bold; -fx-text-fill: gray; -fx-font-size: 11px;"/>
-    <TextField fx:id="tf_transport" promptText="e.g. Bike, Car, Scooter"/>
+    <TextField fx:id="tf_transport" promptText="e.g. Bike, Car, Scooter"
+               style="fx-padding: 10px 20px; -fx-text-fill: black; -fx-font-size: 14px; -fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 2px"/>
 
     <Text text="Distance (in m)" style="-fx-font-weight: bold; -fx-text-fill: gray; -fx-font-size: 11px;"/>
-    <TextField fx:id="tf_distance" promptText="Please only enter digits. e.g. 3000 (3km)"/>
+    <TextField fx:id="tf_distance" promptText="Please only enter digits. e.g. 3000 (3km)"
+               style="fx-padding: 10px 20px; -fx-text-fill: black; -fx-font-size: 14px; -fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 2px"/>
 
     <Text text="Duration (in min)" style="-fx-font-weight: bold; -fx-text-fill: gray; -fx-font-size: 11px;"/>
-    <TextField fx:id="tf_duration" promptText="Pleasy only enter digits. e.g. 120 (2h)"/>
+    <TextField fx:id="tf_duration" promptText="Pleasy only enter digits. e.g. 120 (2h)"
+               style="fx-padding: 10px 20px; -fx-text-fill: black; -fx-font-size: 14px; -fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 2px"/>
 
     <HBox spacing="10" style="-fx-padding: 20px 0px">
         <Button onAction="#submitButtonAction" text="Add New Tour"
                 style="-fx-padding: 8px 16px;
            -fx-text-fill: white;
            -fx-font-weight: bold;
-           -fx-background-color: #390099;
+           -fx-background-color: #000000;
            -fx-cursor: hand;"
         />
 
@@ -61,14 +68,14 @@
                 style="-fx-padding: 8px 16px;
            -fx-text-fill: white;
            -fx-font-weight: bold;
-           -fx-background-color: #390099;
+           -fx-background-color: #000000;
            -fx-cursor: hand;"
         />
     </HBox>
     <!--Submit Button-->
 
 
-    <Label fx:id="l_feedback" style="-fx-text-fill: #ff0000 !important; -fx-font-size: 11px; -fx-wrap-text: true;"/>
+    <Label fx:id="l_feedback" style="-fx-text-fill: #ff0000 !important; -fx-font-size: 12px; -fx-wrap-text: true;"/>
 
     <Separator prefWidth="200.0"/>
 

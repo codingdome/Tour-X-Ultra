@@ -28,4 +28,10 @@ public class TourEntity {
     private String imgUrl;
     private int popularity;
     private int childFriendliness;
+
+    public void setId(Long id) {
+        if (this.id == null) {
+            this.id = id;
+        }
+    }
 }

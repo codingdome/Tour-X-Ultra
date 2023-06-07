@@ -8,13 +8,19 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.templatemode.TemplateMode;
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
+import org.xhtmlrenderer.pdf.ITextRenderer;
 
+import java.io.*;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 import javax.swing.*;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 
 @Service
 @Transactional
@@ -94,7 +100,12 @@ public class ImportExportServiceImpl implements ImportExportService {
     }
 
     @Override
-    public void exportSummarizedReport(SummarizeReport summarizeReport) {
+    public void exportSummarizedReport(SummarizeReport summarizeReport) throws Exception {
+
+        String html = parseThymeleafTemplateSummarizeReport(summarizeReport);
+        generatePdfFromHtml(html, summarizeReport.getDate());
+
+
         // create the subfolder if it does not exist
         File subfolder = new File("summarized_reports");
         if (!subfolder.exists()) {
@@ -132,4 +143,68 @@ public class ImportExportServiceImpl implements ImportExportService {
         }
     }
 
+    private String parseThymeleafTemplateSummarizeReport(SummarizeReport report) {
+        ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+        templateResolver.setSuffix(".html");
+        templateResolver.setTemplateMode(TemplateMode.HTML);
+
+        TemplateEngine templateEngine = new TemplateEngine();
+        templateEngine.setTemplateResolver(templateResolver);
+
+        Context context = new Context();
+        context.setVariable("sumTours", report.getSumTours());
+        context.setVariable("date", report.getDate());
+        context.setVariable("imagePath", "images/logo_txu.png");
+
+
+        return templateEngine.process("thymeleaf/summarize_report", context);
+    }
+
+
+    private void generatePdfFromHtml(String html, Date date) throws Exception {
+        DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+        String formattedDate = dateFormat.format(date);
+        String baseFileName = "Report_" + formattedDate;
+        String fileName = baseFileName + ".pdf";
+        String subfolderName = "summarized_reports";
+
+        String outputFolderPath = System.getProperty("user.dir") + "/" + subfolderName;
+        File outputFolder = new File(outputFolderPath);
+        if (!outputFolder.exists()) {
+            outputFolder.mkdir();  // Create the subfolder if it doesn't exist
+        }
+
+        String outputFilePath = outputFolderPath + "/" + fileName;
+
+        int counter = 1;
+        while (fileExists(outputFilePath)) {
+            fileName = baseFileName + "_" + counter + ".pdf";
+            outputFilePath = outputFolderPath + "/" + fileName;
+            counter++;
+        }
+
+        OutputStream outputStream = new FileOutputStream(outputFilePath);
+        ITextRenderer renderer = new ITextRenderer();
+        renderer.setDocumentFromString(html);
+        renderer.layout();
+        renderer.createPDF(outputStream);
+        outputStream.close();
+    }
+
+    private boolean fileExists(String filePath) {
+        File file = new File(filePath);
+        return file.exists();
+    }
+
+
+//    private void generatePdfFromHtml(String html) throws Exception {
+//        String outputFolder = "src/main/resources/thymeleaf/Report.pdf";
+//        OutputStream outputStream = new FileOutputStream(outputFolder);
+//        ITextRenderer renderer = new ITextRenderer();
+//        renderer.setDocumentFromString(html);
+//        renderer.layout();
+//        renderer.createPDF(outputStream);
+//
+//        outputStream.close();
+//    }
 }

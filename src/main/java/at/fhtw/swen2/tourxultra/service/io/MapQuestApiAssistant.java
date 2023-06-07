@@ -18,6 +18,8 @@ public class MapQuestApiAssistant {
     private static final String DIRECTIONS_API_URL = "http://www.mapquestapi.com/directions/v2/route?key=" + MAPQUEST_API_KEY + "&from=%s&to=%s";
     private static final String STATIC_MAP_API_URL = "http://www.mapquestapi.com/staticmap/v5/map?key=" + MAPQUEST_API_KEY + "&locations=%s,%s|%s,%s&size=600,400";
 
+    private static final String MAPQUEST_API_URL_2 = "https://www.mapquestapi.com/staticmap/v5/map?start=%s&end=%s&size=%d,%d@2x&format=png&key=%s";
+
     private String imageUrl;
     private double distance;
     private int time;
@@ -25,12 +27,18 @@ public class MapQuestApiAssistant {
     public void retrieveData(String fromLocation, String toLocation) {
         RestTemplate restTemplate = new RestTemplate();
 
+        //String url = String.format(MAPQUEST_API_URL_2, fromLocation, toLocation, 500, 170, MAPQUEST_API_KEY);
+
         // Retrieve distance and time using Directions API
         String directionsUrl = String.format(DIRECTIONS_API_URL, fromLocation, toLocation);
+
         ResponseEntity<String> response = restTemplate.getForEntity(directionsUrl, String.class);
 
         if (response.getStatusCode().is2xxSuccessful()) {
             try {
+
+                System.out.println(response);
+
                 ObjectMapper mapper = new ObjectMapper();
                 JsonNode rootNode = mapper.readTree(response.getBody());
                 JsonNode routeNode = rootNode.path("route");
@@ -52,5 +60,9 @@ public class MapQuestApiAssistant {
                 e.printStackTrace();
             }
         }
+    }
+
+    public String returnImgUrl(String fromLocation, String toLocation) {
+        return String.format(MAPQUEST_API_URL_2, fromLocation, toLocation, 1200, 400, MAPQUEST_API_KEY);
     }
 }

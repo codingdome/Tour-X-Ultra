@@ -43,12 +43,13 @@ public class LogListView implements Initializable {
     public ApplicationView applicationView;
 
     @FXML
-    public TableView tableView = new TableView<>();
+    public TableView tableView = null; //new TableView<>();
     @FXML
     public VBox logDataContainer;
 
     @Override
     public void initialize(URL location, ResourceBundle rb) {
+        tableView = new TableView<>();
         tableView.setItems(logListViewModel.getTourListItems());
 
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);

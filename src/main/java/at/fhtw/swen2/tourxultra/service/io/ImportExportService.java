@@ -14,7 +14,7 @@ public interface ImportExportService {
 
     void exportTourReport(TourReport tourReport);
 
-    void exportSummarizedReport(SummarizeReport summarizeReport);
+    void exportSummarizedReport(SummarizeReport summarizeReport) throws Exception;
 
     Tour importTour();
 }
