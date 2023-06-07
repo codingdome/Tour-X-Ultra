@@ -26,36 +26,19 @@ public class GptApiAssistant {
 
 
     public String requestGptResponse(String city, String transport) {
-        String prompt = city + " " + transport; // Replace with your actual prompt
-
-        // Prepare the request body
+        String prompt = city + " " + transport;
         String requestBody = "{\"input\":[{\"role\":\"system\",\"content\":\"Schreib einen schnellen Satz für eine einfache Reise-Möglichkeit, basierend auf dem User-Input. Wenn möglich schlage ein Ziel für die Fahrt vor. Maximal 20 Wörter.\"},{\"role\":\"user\",\"content\":\"" + prompt + "\"}]}";
         MediaType mediaType = MediaType.parse("application/json");
-
-        // Create the HTTP client and request
-        //OkHttpClient client = new OkHttpClient();
-
-        OkHttpClient client = new OkHttpClient.Builder().connectTimeout(100, TimeUnit.SECONDS) // Set the timeout duration (30 seconds in this example)
+        OkHttpClient client = new OkHttpClient.Builder().connectTimeout(100, TimeUnit.SECONDS)
                 .build();
-
         Request request = new Request.Builder().url(GPT_API_ENDPOINT).post(RequestBody.create(requestBody, mediaType)).build();
-
         try {
-            // Execute the request
             Response response = client.newCall(request).execute();
-
             System.out.println(response);
-
-
-            // Check the response
             if (response.isSuccessful()) {
                 String jsonResponse = response.body().string();
                 System.out.println("API response:\n" + jsonResponse);
-
-                //System.out.println(getContentFromApiResponse(jsonResponse));
                 return getContentFromApiResponse(jsonResponse);
-
-                // Handle the JSON response as needed
             } else {
                 System.out.println("API request failed. Response code: " + response.code());
                 return "Something went wrong. Please try again.";
@@ -63,7 +46,6 @@ public class GptApiAssistant {
         } catch (Exception e) {
             System.out.println("An error occurred: " + e.getMessage());
         }
-
         return "Something went wrong. Please try again.";
     }
 
