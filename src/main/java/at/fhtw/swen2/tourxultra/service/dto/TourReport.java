@@ -10,4 +10,5 @@ import java.util.List;
 public class TourReport {
     Tour tour;
     List<Log> tourLogs;
+    byte[] imageBytes;
 }

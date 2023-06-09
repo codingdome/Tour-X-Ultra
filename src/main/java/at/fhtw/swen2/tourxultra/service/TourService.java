@@ -24,7 +24,7 @@ public interface TourService {
 
     List<Tour> getTourList();
 
-    TourReport createTourReport(Tour tour);
+    TourReport createTourReport(Tour tour) throws IOException;
 
     SummarizeReport createSummarizeReport();
 

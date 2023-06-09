@@ -198,7 +198,7 @@ public class TourDetailView implements Initializable {
         }
     }
 
-    public void createTourReportButtonAction(ActionEvent actionEvent) {
+    public void createTourReportButtonAction(ActionEvent actionEvent) throws IOException {
         tourDetailViewModel.createTourReport();
         t_feedback.setText("Successfully exported.");
     }

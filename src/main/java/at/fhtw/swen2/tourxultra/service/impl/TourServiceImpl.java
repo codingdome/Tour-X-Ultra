@@ -1,10 +1,10 @@
 package at.fhtw.swen2.tourxultra.service.impl;
 
-import at.fhtw.swen2.tourxultra.presentation.viewmodel.TourViewModels.TourListViewModel;
 import at.fhtw.swen2.tourxultra.service.LogService;
 import at.fhtw.swen2.tourxultra.service.dto.SumTour;
 import at.fhtw.swen2.tourxultra.service.dto.SummarizeReport;
 import at.fhtw.swen2.tourxultra.service.dto.TourReport;
+import at.fhtw.swen2.tourxultra.service.io.MapQuestApiAssistant;
 import com.google.gson.Gson;
 import at.fhtw.swen2.tourxultra.persistence.entities.TourEntity;
 import at.fhtw.swen2.tourxultra.persistence.repositories.TourRepository;
@@ -23,10 +23,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Service
 @Transactional
 public class TourServiceImpl implements TourService {
+
+    private static final Logger logger = Logger.getLogger(TourServiceImpl.class.getName());
 
     @Autowired
     private TourRepository tourRepository;
@@ -37,13 +40,16 @@ public class TourServiceImpl implements TourService {
     @Autowired
     private LogService logService;
 
+    MapQuestApiAssistant mapQuestApiAssistant = new MapQuestApiAssistant();
+
     @Override
     public Tour addNew(Tour tour) {
         if (tour == null) {
             return null;
         }
         TourEntity tourEntity = tourRepository.save(tourMapper.toEntity(tour));
-        System.out.println(tourRepository.findAll());
+        //System.out.println(tourRepository.findAll());
+        logger.info(String.format("New Tour: %s added", tourEntity.getName()));
         return tourMapper.fromEntity(tourEntity);
     }
 
@@ -78,19 +84,21 @@ public class TourServiceImpl implements TourService {
         Tour importTour = fileToTour(file);
         //check if tour exists (for list view)
 //        tourRepository.save(tourMapper.toEntity(importTour));
+        TourEntity tourEntity;
+
         if (tourRepository.findById(importTour.getId()).isPresent()) {
             //it already exists:
-            TourEntity tourEntity = tourRepository.save(tourMapper.toEntity(importTour));
+            tourEntity = tourRepository.save(tourMapper.toEntity(importTour));
         } else {
             //it does not exist:
-            TourEntity tourEntity = tourRepository.save(tourMapper.toEntity(importTour));
+            tourEntity = tourRepository.save(tourMapper.toEntity(importTour));
         }
-        return null;
+        return tourMapper.fromEntity(tourEntity);
     }
 
     @Override
-    public TourReport createTourReport(Tour tour) {
-        return TourReport.builder().tour(tour).tourLogs(logService.getLogListByTour(tour)).build();
+    public TourReport createTourReport(Tour tour) throws IOException {
+        return TourReport.builder().tour(tour).tourLogs(logService.getLogListByTour(tour)).imageBytes(mapQuestApiAssistant.returnImageBytes(tour.getDeparture(), tour.getArrival())).build();
     }
 
     private Tour fileToTour(File file) throws IOException {

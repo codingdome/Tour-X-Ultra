@@ -90,6 +90,7 @@ public class NewTourView implements Initializable {
 
         File selectedFile = fileChooser.showOpenDialog(stage);
         if (selectedFile != null) {
+            //set file das nehmen das von services zurück kommt(!)
             tourDetailViewModel.setFile(selectedFile);
             tourDetailViewModel.importTour();
 

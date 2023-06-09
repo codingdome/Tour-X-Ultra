@@ -94,20 +94,21 @@ public class TourDetailViewModel {
     }
 
     public void importTour() throws IOException {
-        Tour tour = fileToTour(file);
-        if (tourListViewModel.getTourListItems().contains(tour)) {
-            tourListViewModel.updateList(tour);
+        //Tour tour = fileToTour(file);
+        Tour importedTour = tourService.importTour(file);
+        if (tourListViewModel.getTourListItems().contains(importedTour)) {
+            tourListViewModel.updateList(importedTour);
         } else {
-            tourListViewModel.addItem(tour);
+            tourListViewModel.addItem(importedTour);
         }
-        tourService.importTour(file);
+        //tourService.importTour(file);
     }
 
     public void exportTour() {
         importExportService.exportTour(tour);
     }
 
-    public void createTourReport() {
+    public void createTourReport() throws IOException {
 //        System.out.println(tourService.createTourReport(tour));
         importExportService.exportTourReport(tourService.createTourReport(tour));
     }

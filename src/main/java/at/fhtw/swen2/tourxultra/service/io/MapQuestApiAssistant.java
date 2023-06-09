@@ -2,12 +2,15 @@ package at.fhtw.swen2.tourxultra.service.io;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.scene.image.Image;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.ByteArrayInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 @Data
@@ -65,4 +68,35 @@ public class MapQuestApiAssistant {
     public String returnImgUrl(String fromLocation, String toLocation) {
         return String.format(MAPQUEST_API_URL_2, fromLocation, toLocation, 1200, 400, MAPQUEST_API_KEY);
     }
+
+    public byte[] returnImageBytes(String origin, String destination) throws IOException {
+        return getImageBytes(origin, destination);
+    }
+
+    public Image getImage(String origin, String destination) throws IOException {
+        byte[] imageBytes = getImageBytes(origin, destination);
+        Image image = null;
+        try {
+            ByteArrayInputStream bis = new ByteArrayInputStream(imageBytes);
+            image = new Image(bis);
+            bis.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return image;
+    }
+
+    private byte[] getImageBytes(String origin, String destination) throws IOException {
+        String apiURL = "https://www.mapquestapi.com/staticmap/v5/map?start=%s&end=%s&size=%d,%d@2x&format=png&key=%s";
+        RestTemplate restTemplate = new RestTemplate();
+        String url = String.format(apiURL, origin, destination, 1200, 400, MAPQUEST_API_KEY);
+        byte[] imageBytes = restTemplate.getForObject(url, byte[].class);
+
+        FileOutputStream fos = new FileOutputStream("map.png");
+        fos.write(imageBytes);
+        fos.close();
+        return imageBytes;
+    }
+
+
 }

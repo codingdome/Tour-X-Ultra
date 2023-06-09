@@ -84,4 +84,8 @@ The application includes many basic unit test which will make sure, that the mai
 1. Since this is java fx and really NOBODY cares about it - the UI will be blocked when double click on a tour, since the image will be downloaded in the background. Also when using the inspiration feature with GPT it will take some time until the UI will be unblocked again.
 2. When exporting a tour, then delete it and then import it via JSON file again you will run into databse issues when adding a new log since the imported ID will not be the same then in database.
 
+### Fixed Bugs
+
+1. Tour Export & Import will no longer make any issues.
+
 ![title](readme_src/logo_txu.png)
